@@ -265,7 +265,6 @@ pub async fn destroy_space_key(meta_db: &Arc<MetadataDb>, addr: Address) -> Resu
     Ok(())
 }
 
-
 /// Verify the signature of a payload with a peer's public key (address)
 #[allow(unused)] // todo
 pub fn verify_message(peer: Address, msg: &[u8], signature: Signature) -> Option<()> {

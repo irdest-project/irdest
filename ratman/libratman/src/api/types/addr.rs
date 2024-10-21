@@ -10,6 +10,7 @@ use crate::{
 use nom::IResult;
 use std::ffi::CString;
 
+/// Create a new address with an optional description identifier
 pub struct AddrCreate {
     pub name: Option<CString>,
 }
@@ -38,6 +39,7 @@ impl FrameParser for AddrCreate {
     }
 }
 
+/// Destroy an existing adress, optionally deleting all associated data
 pub struct AddrDestroy {
     pub addr: Address,
     pub force: bool,
@@ -70,6 +72,7 @@ impl FrameParser for AddrDestroy {
     }
 }
 
+/// Mark an address as up
 pub struct AddrUp {
     pub addr: Address,
 }
@@ -96,6 +99,7 @@ impl FrameParser for AddrUp {
     }
 }
 
+/// Mark an address as down
 pub struct AddrDown {
     pub addr: Address,
 }
@@ -122,6 +126,7 @@ impl FrameParser for AddrDown {
     }
 }
 
+/// List all locally available addresses
 pub struct AddrList {
     pub list: Vec<Address>,
 }

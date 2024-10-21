@@ -34,6 +34,7 @@ impl FrameParser for NamespaceRegister {
     }
 }
 
+/// Destroy an existing namespace
 pub struct NamespaceDestroy {
     pub pubkey: Address,
     pub privkey: Ident32,
@@ -58,6 +59,7 @@ impl FrameParser for NamespaceDestroy {
     }
 }
 
+/// Mark an existing namespace as up
 pub struct NamespaceUp {
     pub client_addr: Address,
     pub namespace_addr: Namespace,
@@ -88,6 +90,7 @@ impl FrameParser for NamespaceUp {
     }
 }
 
+/// Mark an existing namespace as down
 pub struct NamespaceDown {
     pub client_addr: Address,
     pub namespace_addr: Namespace,
@@ -118,6 +121,7 @@ impl FrameParser for NamespaceDown {
     }
 }
 
+/// Send an anycast probe into a namespace
 pub struct AnycastProbe {
     pub self_addr: Address,
     pub namespace_addr: Address,

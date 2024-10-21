@@ -1,3 +1,9 @@
+//! A new low-level socket abstraction
+//!
+//! This is here to make it available in the Ratman router sources.  As an
+//! Irdest client developer you should not use this abstraction directly, but it
+//! is included in the public API in case it helps you anyway.
+
 use std::{
     pin::Pin,
     task::{Context, Poll},

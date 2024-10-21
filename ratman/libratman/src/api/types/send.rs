@@ -5,6 +5,7 @@ use crate::{
 };
 use nom::IResult;
 
+/// Send a data stream to a single recipient
 pub struct SendOne {
     pub letterhead: LetterheadV1,
 }
@@ -24,6 +25,7 @@ impl FrameParser for SendOne {
     }
 }
 
+/// Send a  to many recipients
 pub struct SendMany {
     pub letterheads: Vec<LetterheadV1>,
 }

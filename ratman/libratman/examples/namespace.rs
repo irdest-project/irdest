@@ -1,7 +1,7 @@
 use std::time::Duration;
 
 use libratman::{
-    api::{default_api_bind, RatmanNamespaceExt, RatmanIpc, RatmanIpcExtV1},
+    api::{default_api_bind, RatmanIpc, RatmanIpcExtV1, RatmanNamespaceExt},
     generate_space_key, tokio, Result,
 };
 

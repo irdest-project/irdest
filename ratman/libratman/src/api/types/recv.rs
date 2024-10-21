@@ -8,6 +8,7 @@ use crate::{
 };
 use nom::IResult;
 
+/// Create a new subscription
 pub struct SubsCreate {
     pub addr: Address,
     pub recipient: Recipient,
@@ -36,6 +37,7 @@ impl FrameParser for SubsCreate {
     }
 }
 
+/// Delete an existing subscription
 pub struct SubsDelete {
     pub sub_id: Ident32,
     pub addr: Address,
@@ -58,6 +60,7 @@ impl FrameGenerator for SubsDelete {
     }
 }
 
+/// Restore a previous subscription
 pub struct SubsRestore {
     pub sub_id: Ident32,
     pub addr: Address,
@@ -80,6 +83,7 @@ impl FrameParser for SubsRestore {
     }
 }
 
+/// Request to send a single data stream
 pub struct RecvOne {
     pub addr: Address,
     pub to: Recipient,
@@ -108,6 +112,7 @@ impl FrameParser for RecvOne {
     }
 }
 
+/// Receive many data streams
 pub struct RecvMany {
     pub addr: Address,
     pub to: Recipient,

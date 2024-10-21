@@ -1,5 +1,3 @@
-use nom::IResult;
-
 use crate::{
     frame::{
         carrier::take_address,
@@ -10,8 +8,10 @@ use crate::{
     types::{to_cstring, Address},
     Result,
 };
+use nom::IResult;
 use std::ffi::CString;
 
+/// Add a new contact entry
 pub struct ContactAdd {
     /// The address to add as a contact
     pub addr: Address,
@@ -66,11 +66,13 @@ impl FrameParser for ContactAdd {
     }
 }
 
+/// Delete an existing contact entry
 pub struct ContactDelete {
     /// An address to delete the contact book entry for
     pub addr: Address,
 }
 
+/// Modify a contact entry in-place
 pub struct ContactModify {
     pub add_tags: Vec<(CString, CString)>,
     pub remove_tags_by_key: Vec<CString>,

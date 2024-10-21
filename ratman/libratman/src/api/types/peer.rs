@@ -13,6 +13,7 @@ use nom::IResult;
 use serde::{Deserialize, Serialize};
 use std::{ffi::CString, fmt::Display};
 
+/// Query existing peers
 #[repr(C)]
 pub struct PeerQuery {
     /// A regex filter that will have to pass on the peer note contents
@@ -40,6 +41,7 @@ impl FrameParser for PeerQuery {
     }
 }
 
+/// A peer entry
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PeerEntry {
     pub addr: Address,
@@ -98,6 +100,7 @@ impl FrameParser for PeerEntry {
     }
 }
 
+/// A list of available peers
 #[repr(C)]
 #[derive(Debug)]
 pub struct PeerList {

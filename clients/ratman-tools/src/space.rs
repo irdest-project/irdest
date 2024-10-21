@@ -1,7 +1,7 @@
 use crate::{base_args::BaseArgs, encode_map, OutputFormat};
 use clap::ArgMatches;
 use libratman::{
-    api::{RatmanNamespaceExt, RatmanIpc},
+    api::{RatmanIpc, RatmanNamespaceExt},
     tokio::{
         fs::File,
         io::{AsyncReadExt, AsyncWriteExt},

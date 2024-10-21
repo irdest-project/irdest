@@ -1,6 +1,4 @@
-//! Client API protocol definitions
-//!
-//!
+//! Client API protocol type definitions
 
 mod addr;
 mod contact;
