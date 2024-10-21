@@ -14,6 +14,7 @@ use std::fmt::{self, Display};
 #[cfg(feature = "metrics")]
 use prometheus_client::encoding::text::Encode;
 
+/// An ed22519 pubkey which represents a single address on the Irdest network
 #[repr(transparent)]
 #[derive(Copy, Clone, Debug, Hash, PartialOrd, Ord, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Address(pub Ident32);

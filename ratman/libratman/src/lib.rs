@@ -64,6 +64,11 @@ pub fn env_xdg_config() -> Option<String> {
     std::env::var("XDG_CONFIG_HOME").ok()
 }
 
+/// Create a new private/public keypair usable as a Namespace address
+///
+/// Include this data in all instances of your application to have access to the
+/// namespace.  You can use `ipc.namespace_register()` to register this
+/// namespace key pair in the local router instance.
 pub fn generate_space_key() -> (Address, Ident32) {
     let secret_key = SecretKey::generate(&mut OsRng {});
     let public_key = PublicKey::from(&secret_key);
