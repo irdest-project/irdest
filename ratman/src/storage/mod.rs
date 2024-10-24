@@ -12,7 +12,7 @@
 use crate::{
     journal::page::CachePage,
     storage::{
-        addr_key::AddressData, block::IncompleteBlockData, link::LinkData, route::RouteData,
+        addr_key::AddressData, block::IncompleteBlockData, link::NeighbourData, route::RouteData,
         subs::SubscriptionData,
     },
 };
@@ -49,7 +49,7 @@ pub struct MetadataDb {
     pub db: Keyspace,
     pub addrs: CachePage<AddressData>,
     pub routes: CachePage<RouteData>,
-    pub links: CachePage<LinkData>,
+    pub neighbours: CachePage<NeighbourData>,
     pub incomplete: CachePage<IncompleteBlockData>,
     pub available_streams: CachePage<LetterheadV1>,
     pub subscriptions: CachePage<SubscriptionData>,
@@ -81,8 +81,8 @@ impl MetadataDb {
             db.open_partition("meta_routes", PartitionCreateOptions::default())?,
             PhantomData,
         );
-        let links = CachePage(
-            db.open_partition("meta_links", PartitionCreateOptions::default())?,
+        let neighbours = CachePage(
+            db.open_partition("meta_neighbours", PartitionCreateOptions::default())?,
             PhantomData,
         );
         let incomplete = CachePage(
@@ -102,7 +102,7 @@ impl MetadataDb {
             db,
             addrs,
             routes,
-            links,
+            neighbours,
             incomplete,
             available_streams,
             subscriptions,

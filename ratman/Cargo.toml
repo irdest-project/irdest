@@ -17,7 +17,7 @@ edition = "2018"
 ## the main way users interact with the router.  For very low-power
 ## targets it can be disabled with --no-default-features
 default = [ "dashboard", "datalink", "inet", "lan", "lora" ]
-dashboard = [ "tide", "rust-embed", "openapi_type", "prometheus-client" ]
+dashboard = [ "rust-embed", "openapi_type", "prometheus-client" ]
 
 # Allow different netmods to be enabled or disabled at compile-time.
 # By default we want to include all of them (see above).  If a user
@@ -73,7 +73,6 @@ openapi_type = { version = "0.4", optional = true }
 prometheus-client = { version = "0.16", optional = true }
 rust-embed = { version = "6.3", optional = true }
 serde_json = "1.0"
-tide = { version = "0.16", optional = true }
 
 ## System integration and tooling
 clap = "2.0"

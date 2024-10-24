@@ -10,6 +10,7 @@ use crate::{
         MetadataDb,
     },
     util::IoPair,
+    web::NeighbourEntry,
 };
 use chrono::Utc;
 use libratman::{
@@ -404,6 +405,36 @@ impl RouteTable {
                     .find(|(_, entry)| entry.state == RouteState::Active)
                     .map(|(_, entry)| entry.state)
             })
+    }
+
+    pub(crate) async fn neighbours(&self) -> BTreeMap<EpNeighbourPair, NeighbourEntry> {
+        let neighbours_bw = &self.solver_state.read().await.available_bw.clone();
+        let neighbours_buffer = &self.solver_state.read().await.available_buffer.clone();
+
+        neighbours_bw
+            .into_iter()
+            .zip(neighbours_buffer.into_iter())
+            .fold(BTreeMap::new(), |mut map, ((id, bw), (_, buffer))| {
+                map.insert(
+                    *id,
+                    NeighbourEntry {
+                        neighbour_id: format!("Driver#{} Device#{}", id.0, id.1),
+                        neighbour_ping: Duration::from_millis(100),
+                        bandwidth: bw.clone(),
+                        buffer: *buffer,
+                    },
+                );
+                map
+            })
+    }
+
+    pub(crate) async fn all_entries(&self) -> BTreeMap<Address, RouteData> {
+        self.meta_db
+            .routes
+            .iter()
+            .into_iter()
+            .map(|(addr, inner)| (Address::from_string(&addr), inner))
+            .collect()
     }
 }
 

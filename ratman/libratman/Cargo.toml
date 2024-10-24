@@ -15,11 +15,12 @@ default = [ "client", "netmod" ]
 netmod = [ ]
 client = [ ]
 metrics = [ "prometheus-client" ]
-daemon = [ ]
+daemon = [ "axum" ]
 
 [dependencies]
 async-eris = { version = "0.1", path = "../../utils/eris-rs" }
 async-trait = "0.1"
+axum = { version = "0.7.0", features = ["tokio"], optional = true }
 bincode = "1.0"
 blake2 = "0.9.0"
 byteorder = "1.0"

@@ -5,6 +5,7 @@ use crate::{
     Result,
 };
 use async_trait::async_trait;
+use serde::{Deserialize, Serialize};
 use std::sync::Arc;
 
 /// The main trait describing a Ratman networking interface
@@ -116,7 +117,9 @@ impl<T: EndpointExt + Send + Sync> EndpointExt for Arc<T> {
 ///
 /// This information is used by the router to update the RouteData in
 /// encountered announcement frames.
-#[derive(Default, Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Default, Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize,
+)]
 pub struct NeighbourMetrics {
     /// TX speeds measured in bytes per second
     pub write_bandwidth: u64,

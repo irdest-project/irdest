@@ -5,7 +5,7 @@
 use crate::{journal::types::BlockData, storage::block::StorageBlock};
 use async_eris::{Block, BlockReference, BlockStorage};
 use async_trait::async_trait;
-use fjall::{Keyspace, PartitionCreateOptions, PartitionHandle};
+use fjall::PartitionHandle;
 use libratman::{
     frame::{FrameGenerator, FrameParser},
     tokio::task::spawn_blocking,

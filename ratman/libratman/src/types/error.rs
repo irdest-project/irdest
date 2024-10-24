@@ -54,21 +54,15 @@ pub enum RatmanError {
     Schedule(#[from] self::ScheduleError),
     #[error("a storage error: {0}")]
     Storage(#[from] fjall::Error),
-    // #[cfg(all(feature = "daemon", target_family = "unix"))]
-    // #[error("a unix system error: {0}")]
-    // UnixSystem(#[from] nix::errno::Errno),
+    #[error("web engine error: {0}")]
+    WebDashboardError(#[from] axum::Error),
     #[error("failed to acquire state directory lock")]
     StateDirectoryAlreadyLocked,
     #[error("{0}")]
     User(#[from] UserError),
-    // #[error("failed to de-sequence a series of frames")]
-    // DesequenceFault,
-    // #[error("the given address '{0}' is unknown to this router!")]
-    // NoSuchAddress(Address),
-    // #[error("the address '{0}' already exists!")]
-    // DuplicateAddress(Address),
-    // #[error("the identifier data provided was not the correct length.  Expected {0}, got {1}")]
-    // WrongIdentifierLength(usize, usize),
+    // #[cfg(all(feature = "daemon", target_family = "unix"))]
+    // #[error("a unix system error: {0}")]
+    // UnixSystem(#[from] nix::errno::Errno),
 }
 
 impl From<RatmanError> for io::Error {
