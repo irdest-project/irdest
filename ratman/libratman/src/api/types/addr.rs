@@ -39,7 +39,7 @@ impl FrameParser for AddrCreate {
     }
 }
 
-/// Destroy an existing adress, optionally deleting all associated data
+/// Destroy an existing address, optionally deleting all associated data
 pub struct AddrDestroy {
     pub addr: Address,
     pub force: bool,
