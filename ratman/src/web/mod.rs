@@ -29,7 +29,7 @@ pub async fn start(
     let state = WebState { router };
 
     // Build a router and attach some routes to it
-    let mut router = Router::new()
+    let router = Router::new()
         .route("/api/v1/openapi.json", get(|| async { "openapi.json" }))
         .route("/api/v1/addrs", get(v1::get_addrs))
         .route("/api/v1/peers", get(v1::get_peers))
@@ -46,7 +46,8 @@ pub async fn start(
     //     router.at("/*").get(serve_dashboard);
 
     // run our router with hyper, listening globally on port 3000
-    let listener = TcpListener::bind(bind_addr).await?;
+    let listener = TcpListener::bind(bind_addr.clone()).await?;
+    info!("HTTP API listening on {bind_addr}");
     serve(listener, router).await.unwrap();
 
     //     // Convert errors into a form Ember.js can understand.

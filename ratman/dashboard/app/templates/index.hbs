@@ -9,42 +9,4 @@ SPDX-License-Identifier: AGPL-3.0-or-later WITH LicenseRef-AppStore
 <h2>{{t 'index.placeholder.heading'}}</h2>
 <p>{{t 'index.placeholder.greeting'}}</p>
 
-{{!--
-I'm not super happy with the duplicated code here, but breaking it out into a
-component feels a bit overkill for something that isn't really reusable anyway.
---}}
-<table class="table">
-  <tbody>
-    {{!-- Local Addresses --}}
-    <tr><th colspan="9999">{{t 'addr.group.local'}}</th></tr>
-    {{#each this.localAddrs as |addr|}}
-      <tr class={{unless addr.isActive 'table-secondary'}}>
-        <td>{{addr.id}}</td>
-        <td class="peer-data peer-data-up">
-          ↑ {{format-number addr.bytesPerSecondSent unit='byte-per-second'
-              unitDisplay='narrow' style='unit'}}
-        </td>
-        <td class="peer-data peer-data-down">
-          ↓ {{format-number addr.bytesPerSecondRecv unit='byte-per-second'
-              unitDisplay='narrow' style='unit'}}
-        </td>
-      </tr>
-    {{/each}}
-
-    {{!-- Remote Addresses --}}
-    <tr><th colspan="9999">{{t 'addr.group.remote'}}</th></tr>
-    {{#each this.remoteAddrs as |addr|}}
-      <tr class={{unless addr.isActive 'table-secondary'}}>
-        <td>{{addr.id}}</td>
-        <td class="peer-data peer-data-up">
-          ↑ {{format-number addr.bytesPerSecondSent unit='byte-per-second'
-              unitDisplay='narrow' style='unit'}}
-        </td>
-        <td class="peer-data peer-data-down">
-          ↓ {{format-number addr.bytesPerSecondRecv unit='byte-per-second'
-              unitDisplay='narrow' style='unit'}}
-        </td>
-      </tr>
-    {{/each}}
-  </tbody>
-</table>
+<AddrSet @addrs={{@model}}/>

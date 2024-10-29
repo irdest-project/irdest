@@ -226,9 +226,15 @@ impl RatmanContext {
             // this.core.register_metrics(&mut registry);
             this.protocol.register_metrics(&mut registry);
 
-            // if let Err(e) = crate::web::start(this.clone(), registry, dashboard_bind) {
-            //     error!("failed to start web dashboard server: {}", e);
-            // }
+            {
+                let this = this.clone();
+                let dashboard_bind = ratmand_config.get_string_value("dashboard_bind").unwrap();
+                new_async_thread(
+                    "http-server",
+                    8,
+                    crate::web::start(this.clone(), registry, dashboard_bind),
+                );
+            }
         }
 
         // Finally, we start the machinery that accepts new client

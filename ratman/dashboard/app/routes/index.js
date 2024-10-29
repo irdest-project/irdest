@@ -8,11 +8,13 @@ import RSVP from 'rsvp';
 
 export default class IndexRoute extends Route {
   @service store;
-  @service metrics;
+  // @service metrics;
 
-  model() {
-    return RSVP.hash({
-      addrs: this.store.findAll('addr'),
+  async model() {
+    const res = await this.store.requestManager.request({
+        url: "/api/v1/addrs"
     });
+
+    return res.content;
   }
 }

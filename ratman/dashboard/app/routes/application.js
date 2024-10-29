@@ -21,7 +21,7 @@ export default class ApplicationRoute extends Route {
       this.setupIntl();
 
       // Start polling for metrics.
-      this.metrics.start();
+      // this.metrics.start();
     }
   }
   afterModel() {
